@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS applications;
+DROP TABLE IF EXISTS tenants;
+DROP TABLE IF EXISTS subjects;
+DROP TABLE IF EXISTS tenant_subjects;
+DROP TABLE IF EXISTS tenant_roles;
+DROP TABLE IF EXISTS tenant_role_subjects;
+DROP TABLE IF EXISTS tenant_resources;
+DROP TABLE IF EXISTS tenant_resource_actions;
+DROP TABLE IF EXISTS tenant_role_actions;

@@ -1,0 +1,81 @@
+basePath: /
+definitions:
+  request.CreateApplicationRequest:
+    properties:
+      name:
+        minLength: 3
+        type: string
+    required:
+    - name
+    type: object
+  response.CreateApplicationResponse:
+    properties:
+      application_id:
+        type: string
+      message:
+        type: string
+      status:
+        $ref: '#/definitions/response.GeneralResponseStatus'
+      token:
+        type: string
+    type: object
+  response.ErrorResponse:
+    properties:
+      error: {}
+      title:
+        type: string
+    type: object
+  response.GeneralResponseStatus:
+    enum:
+    - SUCCESS
+    type: string
+    x-enum-varnames:
+    - SUCCESS
+  response.HealthCheckResponse:
+    properties:
+      message:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Provide API endpoints for IAM service.
+  title: IAM Service
+  version: "1.0"
+paths:
+  /api/v1/applications:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Application information
+        in: body
+        name: application
+        required: true
+        schema:
+          $ref: '#/definitions/request.CreateApplicationRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.CreateApplicationResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Create Application
+  /healthz:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.HealthCheckResponse'
+      summary: Health Check
+swagger: "2.0"

@@ -19,3 +19,10 @@
 
 # Go workspace file
 go.work
+
+# for local development
+Dockerfile.dev
+docker-compose.dev.yml
+
+# others
+.DS_Store
